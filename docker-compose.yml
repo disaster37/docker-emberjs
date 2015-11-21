@@ -1,0 +1,21 @@
+ide:
+  build: ./dockerfile
+  volumes:
+    - ./home:/home/dev
+    - /tmp/.X11-unix:/tmp/.X11-unix:ro
+  environment:
+    - DISPLAY
+  ports:
+    - "8081:8080"
+
+shell:
+  image: dockerspaceequarius_ide
+  volumes:
+    - ./home:/home/dev
+    - /tmp/.X11-unix:/tmp/.X11-unix:ro
+  environment:
+    - DISPLAY
+  command: xfce4-terminal --command '/bin/bash' --title 'Ember Dev Shell'
+  privileged: true
+  ports:
+    - "4200:4200"
