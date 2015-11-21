@@ -1,5 +1,5 @@
 ide:
-  build: ./dockerfile
+  image: quay.io/webcenter/docker-emberjs
   volumes:
     - ./home:/home/dev
     - /tmp/.X11-unix:/tmp/.X11-unix:ro
@@ -9,13 +9,23 @@ ide:
     - "8081:8080"
 
 shell:
-  image: dockerspaceequarius_ide
+  image: quay.io/webcenter/docker-emberjs
   volumes:
     - ./home:/home/dev
     - /tmp/.X11-unix:/tmp/.X11-unix:ro
   environment:
     - DISPLAY
-  command: xfce4-terminal --command '/bin/bash' --title 'Ember Dev Shell'
+  command: xfce4-terminal --command '/bin/bash' --title 'Node Shell'
   privileged: true
   ports:
     - "4200:4200"
+
+shellEmber:
+  image: quay.io/webcenter/docker-emberjs
+  volumes:
+    - ./home:/home/dev
+    - /tmp/.X11-unix:/tmp/.X11-unix:ro
+  environment:
+    - DISPLAY
+  command: xfce4-terminal --command '/bin/bash' --title 'Ember Shell'
+  privileged: true
