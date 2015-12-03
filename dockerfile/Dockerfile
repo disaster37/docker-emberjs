@@ -24,7 +24,7 @@ RUN apt-get install -y nodejs
 RUN npm install -g async
 
 # Install npm module
-RUN npm install -g yo bower grunt-cli gulp ember-cli watchman
+RUN npm install -g yo bower grunt-cli gulp ember-cli watchman express-generator nodemon
 
 # Install Webstorm IDEA
 
