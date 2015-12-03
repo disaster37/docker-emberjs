@@ -14,7 +14,7 @@ RUN apt-get update && \
     dpkg-reconfigure locales
 
 # Install Nodejs, Java, Maven, Git, terminal, etc.
-RUN apt-get install curl openjdk-7-jre xfce4-terminal git unzip make libkrb5-dev -y
+RUN apt-get install curl openjdk-7-jre xfce4-terminal git unzip make libkrb5-dev build-essential -y
 
 RUN curl -sL https://deb.nodesource.com/setup_${NODEJS_VERSION} | bash -
 RUN apt-get install -y nodejs
