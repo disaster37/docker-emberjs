@@ -3,12 +3,13 @@ ide:
   volumes:
     - ./home:/home/dev
     - /tmp/.X11-unix:/tmp/.X11-unix:ro
+    - ./config/webstorm64.vmoptions:/opt/webstorm/bin/webstorm64.vmoptions
   environment:
     - DISPLAY
   ports:
     - "8081:8080"
 
-shell:
+node:
   image: quay.io/webcenter/docker-emberjs
   volumes:
     - ./home:/home/dev
@@ -16,6 +17,20 @@ shell:
   environment:
     - DISPLAY
   command: xfce4-terminal --command '/bin/bash' --title 'Node Shell'
+  privileged: true
+  ports:
+    - "3000:3000"
+  links:
+    - mongodb
+
+nodeEmber:
+  image: quay.io/webcenter/docker-emberjs
+  volumes:
+    - ./home:/home/dev
+    - /tmp/.X11-unix:/tmp/.X11-unix:ro
+  environment:
+    - DISPLAY
+  command: xfce4-terminal --command '/bin/bash' --title 'Ember Node Shell'
   privileged: true
   ports:
     - "4200:4200"
@@ -29,3 +44,8 @@ shellEmber:
     - DISPLAY
   command: xfce4-terminal --command '/bin/bash' --title 'Ember Shell'
   privileged: true
+
+mongodb:
+  image: mongo:3.1
+  volumes:
+    - ./data/mongodb:data/db
