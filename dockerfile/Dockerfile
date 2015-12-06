@@ -14,7 +14,8 @@ RUN apt-get update && \
     dpkg-reconfigure locales
 
 # Install Nodejs, Java, Maven, Git, terminal, etc.
-RUN apt-get install curl openjdk-7-jre xfce4-terminal git unzip -y
+RUN apt-get install curl openjdk-7-jre xfce4-terminal git unzip make libkrb5-dev -y
+RUN apt-get install build-essential -y
 
 RUN curl -sL https://deb.nodesource.com/setup_${NODEJS_VERSION} | bash -
 RUN apt-get install -y nodejs
@@ -24,7 +25,7 @@ RUN apt-get install -y nodejs
 RUN npm install -g async
 
 # Install npm module
-RUN npm install -g yo bower grunt-cli gulp ember-cli watchman
+RUN npm install -g yo bower grunt-cli gulp ember-cli watchman express-generator nodemon node-gyp generator-angular-fullstack
 
 # Install Webstorm IDEA
 
